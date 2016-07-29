@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB511E7B1D2AB1FD005B21CA /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AB511E7A1D2AB1FD005B21CA /* PageTableViewCell.xib */; };
+		AB511E7E1D2AB207005B21CA /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AB511E7D1D2AB207005B21CA /* PageTableViewCell.m */; };
+		AB511E831D2AB235005B21CA /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = AB511E801D2AB235005B21CA /* Comment.m */; };
+		AB511E841D2AB235005B21CA /* Floor.m in Sources */ = {isa = PBXBuildFile; fileRef = AB511E821D2AB235005B21CA /* Floor.m */; };
 		AB816C201D26B0EA0077D8DE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C1F1D26B0EA0077D8DE /* main.m */; };
 		AB816C231D26B0EA0077D8DE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C221D26B0EA0077D8DE /* AppDelegate.m */; };
 		AB816C261D26B0EA0077D8DE /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C251D26B0EA0077D8DE /* ViewController.m */; };
@@ -15,6 +19,12 @@
 		AB816C2E1D26B0EA0077D8DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AB816C2C1D26B0EA0077D8DE /* LaunchScreen.storyboard */; };
 		AB816C391D26B0EA0077D8DE /* JQPageScanerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C381D26B0EA0077D8DE /* JQPageScanerTests.m */; };
 		AB816C441D26B0EA0077D8DE /* JQPageScanerUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C431D26B0EA0077D8DE /* JQPageScanerUITests.m */; };
+		AB816C5B1D26B4790077D8DE /* JQPagerMeunView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C5A1D26B4790077D8DE /* JQPagerMeunView.m */; };
+		AB816C671D28EBA40077D8DE /* JQPageScanControll.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C661D28EBA40077D8DE /* JQPageScanControll.m */; };
+		AB816C6A1D28EBC80077D8DE /* UITableView+PageScan.m in Sources */ = {isa = PBXBuildFile; fileRef = AB816C691D28EBC80077D8DE /* UITableView+PageScan.m */; };
+		AB8C21DE1D2E3B520077BA1E /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8C21DD1D2E3B520077BA1E /* TitleView.m */; };
+		ABB38FD81D49005C00484BF4 /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABB38FD71D49005C00484BF4 /* data.txt */; };
+		ABB38FDA1D4AF8E500484BF4 /* data1.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABB38FD91D4AF8E500484BF4 /* data1.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +45,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		AB511E7A1D2AB1FD005B21CA /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewCell.xib; sourceTree = "<group>"; };
+		AB511E7C1D2AB207005B21CA /* PageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableViewCell.h; sourceTree = "<group>"; };
+		AB511E7D1D2AB207005B21CA /* PageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableViewCell.m; sourceTree = "<group>"; };
+		AB511E7F1D2AB235005B21CA /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		AB511E801D2AB235005B21CA /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
+		AB511E811D2AB235005B21CA /* Floor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Floor.h; sourceTree = "<group>"; };
+		AB511E821D2AB235005B21CA /* Floor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Floor.m; sourceTree = "<group>"; };
 		AB816C1B1D26B0E90077D8DE /* JQPageScaner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = JQPageScaner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB816C1F1D26B0EA0077D8DE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		AB816C211D26B0EA0077D8DE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -51,6 +68,16 @@
 		AB816C3F1D26B0EA0077D8DE /* JQPageScanerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = JQPageScanerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB816C431D26B0EA0077D8DE /* JQPageScanerUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JQPageScanerUITests.m; sourceTree = "<group>"; };
 		AB816C451D26B0EA0077D8DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB816C591D26B4790077D8DE /* JQPagerMeunView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JQPagerMeunView.h; path = JQPagerScaner/JQPagerMeunView.h; sourceTree = "<group>"; };
+		AB816C5A1D26B4790077D8DE /* JQPagerMeunView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JQPagerMeunView.m; path = JQPagerScaner/JQPagerMeunView.m; sourceTree = "<group>"; };
+		AB816C651D28EBA40077D8DE /* JQPageScanControll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JQPageScanControll.h; sourceTree = "<group>"; };
+		AB816C661D28EBA40077D8DE /* JQPageScanControll.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JQPageScanControll.m; sourceTree = "<group>"; };
+		AB816C681D28EBC80077D8DE /* UITableView+PageScan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+PageScan.h"; sourceTree = "<group>"; };
+		AB816C691D28EBC80077D8DE /* UITableView+PageScan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+PageScan.m"; sourceTree = "<group>"; };
+		AB8C21DC1D2E3B520077BA1E /* TitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleView.h; sourceTree = "<group>"; };
+		AB8C21DD1D2E3B520077BA1E /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
+		ABB38FD71D49005C00484BF4 /* data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.txt; sourceTree = "<group>"; };
+		ABB38FD91D4AF8E500484BF4 /* data1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data1.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +128,9 @@
 		AB816C1D1D26B0EA0077D8DE /* JQPageScaner */ = {
 			isa = PBXGroup;
 			children = (
+				ABB38FD61D49003300484BF4 /* data */,
+				AB8C21DB1D2E31130077BA1E /* model */,
+				AB816C511D26B0FA0077D8DE /* JQPagerScaner */,
 				AB816C211D26B0EA0077D8DE /* AppDelegate.h */,
 				AB816C221D26B0EA0077D8DE /* AppDelegate.m */,
 				AB816C241D26B0EA0077D8DE /* ViewController.h */,
@@ -138,6 +168,44 @@
 				AB816C451D26B0EA0077D8DE /* Info.plist */,
 			);
 			path = JQPageScanerUITests;
+			sourceTree = "<group>";
+		};
+		AB816C511D26B0FA0077D8DE /* JQPagerScaner */ = {
+			isa = PBXGroup;
+			children = (
+				AB8C21DC1D2E3B520077BA1E /* TitleView.h */,
+				AB8C21DD1D2E3B520077BA1E /* TitleView.m */,
+				AB816C591D26B4790077D8DE /* JQPagerMeunView.h */,
+				AB816C5A1D26B4790077D8DE /* JQPagerMeunView.m */,
+				AB816C651D28EBA40077D8DE /* JQPageScanControll.h */,
+				AB816C661D28EBA40077D8DE /* JQPageScanControll.m */,
+				AB816C681D28EBC80077D8DE /* UITableView+PageScan.h */,
+				AB816C691D28EBC80077D8DE /* UITableView+PageScan.m */,
+				AB511E7A1D2AB1FD005B21CA /* PageTableViewCell.xib */,
+				AB511E7C1D2AB207005B21CA /* PageTableViewCell.h */,
+				AB511E7D1D2AB207005B21CA /* PageTableViewCell.m */,
+			);
+			name = JQPagerScaner;
+			sourceTree = "<group>";
+		};
+		AB8C21DB1D2E31130077BA1E /* model */ = {
+			isa = PBXGroup;
+			children = (
+				AB511E7F1D2AB235005B21CA /* Comment.h */,
+				AB511E801D2AB235005B21CA /* Comment.m */,
+				AB511E811D2AB235005B21CA /* Floor.h */,
+				AB511E821D2AB235005B21CA /* Floor.m */,
+			);
+			name = model;
+			sourceTree = "<group>";
+		};
+		ABB38FD61D49003300484BF4 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				ABB38FD71D49005C00484BF4 /* data.txt */,
+				ABB38FD91D4AF8E500484BF4 /* data1.txt */,
+			);
+			name = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -248,7 +316,10 @@
 			files = (
 				AB816C2E1D26B0EA0077D8DE /* LaunchScreen.storyboard in Resources */,
 				AB816C2B1D26B0EA0077D8DE /* Assets.xcassets in Resources */,
+				AB511E7B1D2AB1FD005B21CA /* PageTableViewCell.xib in Resources */,
 				AB816C291D26B0EA0077D8DE /* Main.storyboard in Resources */,
+				ABB38FDA1D4AF8E500484BF4 /* data1.txt in Resources */,
+				ABB38FD81D49005C00484BF4 /* data.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -273,9 +344,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB816C5B1D26B4790077D8DE /* JQPagerMeunView.m in Sources */,
 				AB816C261D26B0EA0077D8DE /* ViewController.m in Sources */,
 				AB816C231D26B0EA0077D8DE /* AppDelegate.m in Sources */,
+				AB511E841D2AB235005B21CA /* Floor.m in Sources */,
 				AB816C201D26B0EA0077D8DE /* main.m in Sources */,
+				AB816C671D28EBA40077D8DE /* JQPageScanControll.m in Sources */,
+				AB511E7E1D2AB207005B21CA /* PageTableViewCell.m in Sources */,
+				AB8C21DE1D2E3B520077BA1E /* TitleView.m in Sources */,
+				AB816C6A1D28EBC80077D8DE /* UITableView+PageScan.m in Sources */,
+				AB511E831D2AB235005B21CA /* Comment.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -501,6 +579,7 @@
 				AB816C4A1D26B0EA0077D8DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB816C4B1D26B0EA0077D8DE /* Build configuration list for PBXNativeTarget "JQPageScanerTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +588,7 @@
 				AB816C4D1D26B0EA0077D8DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		AB816C4E1D26B0EA0077D8DE /* Build configuration list for PBXNativeTarget "JQPageScanerUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +597,7 @@
 				AB816C501D26B0EA0077D8DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
