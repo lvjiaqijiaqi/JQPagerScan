@@ -78,6 +78,7 @@
 -(void)setCurrent:(NSInteger)page of:(NSInteger)pages{
 
      self.currenPageLabel.text = [NSString stringWithFormat:@"%ld / %ld",(long)page , (long)pages];
+    
 }
 
 @end

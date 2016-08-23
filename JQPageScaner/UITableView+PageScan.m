@@ -13,9 +13,7 @@
 
 @implementation UITableView (PageScan)
 
-
-
-void df_swizzling_method(Class class,const char *orignSelName,  const char *newSelName)
+/*void df_swizzling_method(Class class,const char *orignSelName,  const char *newSelName)
 {
     SEL orignSelector = sel_registerName(orignSelName);
     SEL newSelector = sel_registerName(newSelName);
@@ -40,20 +38,20 @@ void df_swizzling_method(Class class,const char *orignSelName,  const char *newS
         df_swizzling_method([self class],"Q_layoutSubviews", "layoutSubviews");
         
         //交换dealloc方法，方便取消kvo监听
-       // df_swizzling_method(self.class, "dealloc", "df_dealloc");
+       //df_swizzling_method(self.class, "dealloc", "df_dealloc");
     });
 }
-
-
 -(void)Q_layoutSubviews{
  
     [self Q_layoutSubviews];
     
 }
+*/
+
 
 static char  pageScanKey;
 
-- (JQPageScanControll *)pageScan
+-(JQPageScanControll *)pageScan
 {
     JQPageScanControll *pageScan = objc_getAssociatedObject(self, &pageScanKey);
     if (!pageScan)
@@ -68,21 +66,15 @@ static char  pageScanKey;
      objc_setAssociatedObject(self, &pageScanKey, pageScan, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-
-
-
 -(UIView *)controllView{
     return [self pageScan].pagerMeunView;
 }
 
 
+
 -(void)statPageScanBlock:(PrepareData)block{
-    
-    [[self pageScan] startListening:self];
     [self pageScan].prepareData = block;
-    [self pageScan].isloading = YES;
-    [[self pageScan] updateDataFromSource:YES];
-    
+    [[self pageScan] startListening:self];
 }
 
 -(void)setReplyBlock:(replyBlock)block{
@@ -91,45 +83,6 @@ static char  pageScanKey;
 -(void)setCommentBlock:(commentBlock)block{
     [self pageScan].rblock = block;
 }
-
-
-
--(BOOL)isloading{
-    return [self pageScan].isloading;
-}
-
-
-
-
-
--(CGFloat)frameX{
-    return self.frame.origin.x;
-}
--(CGFloat)frameY{
-    return self.frame.origin.y;
-}
--(CGFloat)frameW{
-    return self.frame.size.width;
-}
--(CGFloat)frameH{
-    return self.frame.size.height;
-}
--(CGFloat)contentW{
-    return self.contentSize.width;
-}
--(CGFloat)contentH{
-    return self.contentSize.height;
-}
--(CGFloat)contentX{
-    return self.contentOffset.x;
-}
--(CGFloat)contentY{
-    return self.contentOffset.y;
-}
--(CGRect)frameRect{
-    return self.frame;
-}
-
 
 
 @end

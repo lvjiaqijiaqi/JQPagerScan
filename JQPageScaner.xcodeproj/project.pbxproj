@@ -25,6 +25,8 @@
 		AB8C21DE1D2E3B520077BA1E /* TitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AB8C21DD1D2E3B520077BA1E /* TitleView.m */; };
 		ABB38FD81D49005C00484BF4 /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABB38FD71D49005C00484BF4 /* data.txt */; };
 		ABB38FDA1D4AF8E500484BF4 /* data1.txt in Resources */ = {isa = PBXBuildFile; fileRef = ABB38FD91D4AF8E500484BF4 /* data1.txt */; };
+		ABCE5A051D6C283A0090C31F /* UIScrollView+ProportyExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCE5A041D6C283A0090C31F /* UIScrollView+ProportyExtension.m */; };
+		ABCE5A081D6C94240090C31F /* Post.m in Sources */ = {isa = PBXBuildFile; fileRef = ABCE5A071D6C94240090C31F /* Post.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,10 @@
 		AB8C21DD1D2E3B520077BA1E /* TitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleView.m; sourceTree = "<group>"; };
 		ABB38FD71D49005C00484BF4 /* data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.txt; sourceTree = "<group>"; };
 		ABB38FD91D4AF8E500484BF4 /* data1.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data1.txt; sourceTree = "<group>"; };
+		ABCE5A031D6C283A0090C31F /* UIScrollView+ProportyExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+ProportyExtension.h"; sourceTree = "<group>"; };
+		ABCE5A041D6C283A0090C31F /* UIScrollView+ProportyExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+ProportyExtension.m"; sourceTree = "<group>"; };
+		ABCE5A061D6C94240090C31F /* Post.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Post.h; sourceTree = "<group>"; };
+		ABCE5A071D6C94240090C31F /* Post.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Post.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +187,8 @@
 				AB816C661D28EBA40077D8DE /* JQPageScanControll.m */,
 				AB816C681D28EBC80077D8DE /* UITableView+PageScan.h */,
 				AB816C691D28EBC80077D8DE /* UITableView+PageScan.m */,
+				ABCE5A031D6C283A0090C31F /* UIScrollView+ProportyExtension.h */,
+				ABCE5A041D6C283A0090C31F /* UIScrollView+ProportyExtension.m */,
 				AB511E7A1D2AB1FD005B21CA /* PageTableViewCell.xib */,
 				AB511E7C1D2AB207005B21CA /* PageTableViewCell.h */,
 				AB511E7D1D2AB207005B21CA /* PageTableViewCell.m */,
@@ -195,6 +203,8 @@
 				AB511E801D2AB235005B21CA /* Comment.m */,
 				AB511E811D2AB235005B21CA /* Floor.h */,
 				AB511E821D2AB235005B21CA /* Floor.m */,
+				ABCE5A061D6C94240090C31F /* Post.h */,
+				ABCE5A071D6C94240090C31F /* Post.m */,
 			);
 			name = model;
 			sourceTree = "<group>";
@@ -351,6 +361,8 @@
 				AB816C201D26B0EA0077D8DE /* main.m in Sources */,
 				AB816C671D28EBA40077D8DE /* JQPageScanControll.m in Sources */,
 				AB511E7E1D2AB207005B21CA /* PageTableViewCell.m in Sources */,
+				ABCE5A081D6C94240090C31F /* Post.m in Sources */,
+				ABCE5A051D6C283A0090C31F /* UIScrollView+ProportyExtension.m in Sources */,
 				AB8C21DE1D2E3B520077BA1E /* TitleView.m in Sources */,
 				AB816C6A1D28EBC80077D8DE /* UITableView+PageScan.m in Sources */,
 				AB511E831D2AB235005B21CA /* Comment.m in Sources */,

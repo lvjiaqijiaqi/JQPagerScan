@@ -1,10 +1,11 @@
 {
 "postMsg": {
 "name":"杨幂和刘恺威结婚",
-"reply":1001,
-"scan":2000,
-"numberOfpage":10,
-"numberOfpages":5,
+"reply":"1001",
+"scan":"2000",
+"numberOfpage":"10",
+"numberOfpages":"10",
+"Uid":"123123",
 "currentPage":0
 },
 "postsFloor":[

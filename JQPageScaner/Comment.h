@@ -15,5 +15,5 @@
 @property(strong,nonatomic) NSString *uid;
 @property(strong,nonatomic) NSString *username;
 @property(strong,nonatomic) NSString *cid;
-
+@property(strong,nonatomic) NSString *numberOfPages;
 @end

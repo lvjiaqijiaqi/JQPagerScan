@@ -10,4 +10,9 @@
 
 @interface TitleView : UIView
 
+@property(nonatomic,strong) NSString* uId;
+
+-(instancetype)initWithFrame:(CGRect)frame andMsg:(NSDictionary *)msg;
+-(void)updateMsg:(NSDictionary *)msg;
+
 @end

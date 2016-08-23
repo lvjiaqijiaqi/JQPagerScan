@@ -13,6 +13,8 @@
 #define buttomLimit 80
 
 #import "JQPageScanControll.h"
+#import "TitleView.h"
+#import "UIScrollView+ProportyExtension.h"
 
 @interface JQPageScanControll()<JQPagerMeunDelegate,UITableViewDelegate,UIScrollViewDelegate>
 
@@ -22,21 +24,13 @@
 @property(nonatomic) NSInteger numberOfPage;
 @property(nonatomic) NSInteger numberOfPages;
 
-@property(nonatomic,strong) UIView* titleView;
-@property(nonatomic,strong) UILabel *titleLabel;
-@property(nonatomic,strong) UILabel *nameLabel;
-@property(nonatomic,strong) UILabel *replyLabel;
-@property(nonatomic,strong) UILabel *scanLabel;
-@property(nonatomic,strong) UILabel *zoneLabel;
+@property(nonatomic,strong) TitleView* titleView;
+@property(nonatomic,strong) JQPagerMeunView *pagerMeunView;
 
 @property(nonatomic,strong) UILabel *headLabelOfTable;
 @property(nonatomic,strong) UILabel *tailLabelOfTable;
 
 @property(nonatomic,strong) UIImageView *shadowView;
-
-@property(nonatomic,strong) JQPagerMeunView *pagerMeunView;
-
-@property(nonatomic,strong) NSMutableDictionary *pageHeigths;
 
 @end
 
@@ -71,44 +65,33 @@
     return  _tailLabelOfTable;
 }
 
--(UIView *)titleView{
+-(TitleView *)titleView{
     if (_titleView == nil) {
-        UIView *titleView = [[UIView alloc] initWithFrame:CGRectMake(0, -titleViewHeight, [self.PageTableView frameW], titleViewHeight)];
-        titleView.hidden = YES;
-        [self.PageTableView addSubview:titleView];
-        [self.PageTableView setContentInset:UIEdgeInsetsMake(titleViewHeight, 0, 0, 0)];
-        
-        self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, [self.PageTableView frameW]-40, titleViewHeight/2)];
-        self.titleLabel.text = @"杨幂和刘恺威完成婚礼";
-        self.titleLabel.font = [UIFont systemFontOfSize:22];
-        
-        CGFloat segmentWidth = [self.PageTableView frameW]/5;
-        self.nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, titleViewHeight/2, segmentWidth, titleViewHeight/2)];
-        self.nameLabel.text = @"杨幂";
-        self.scanLabel = [[UILabel alloc] initWithFrame:CGRectMake(segmentWidth+20, titleViewHeight/2, segmentWidth, titleViewHeight/2)];
-        self.scanLabel.text = @"浏览:100";
-        self.replyLabel = [[UILabel alloc] initWithFrame:CGRectMake(segmentWidth*2+20, titleViewHeight/2, segmentWidth, titleViewHeight/2)];
-        self.replyLabel.text = @"回复:2";
-        self.zoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(segmentWidth*3+20, titleViewHeight/2, segmentWidth, titleViewHeight/2)];
-        self.zoneLabel.text = @"版聊";
-        
-        [titleView addSubview:self.titleLabel];
-        [titleView addSubview:self.nameLabel];
-        [titleView addSubview:self.scanLabel];
-        [titleView addSubview:self.replyLabel];
-        [titleView addSubview:self.zoneLabel];
-        self.titleView = titleView;
+        TitleView *titleView = [[TitleView alloc] initWithFrame:CGRectMake(0, -titleViewHeight, [self.PageTableView frameW], titleViewHeight) andMsg:nil];
+        [_PageTableView addSubview:titleView];
+        UIEdgeInsets ed= _PageTableView.contentInset;
+        ed.top = ed.top+titleViewHeight;
+        [_PageTableView setContentInset:ed];
+        _titleView.hidden = NO;
+        _titleView = titleView;
     }
     return _titleView;
 }
 
 -(JQPagerMeunView *)pagerMeunView{
     if (_pagerMeunView == nil) {
-        JQPagerMeunView *pageMenu = [[JQPagerMeunView alloc] initWithFrame:CGRectMake([self.PageTableView frameX], [self.PageTableView frameY]+[self.PageTableView frameH], [self.PageTableView frameW], 50) With:self];
+        JQPagerMeunView *pageMenu = [[JQPagerMeunView alloc] initWithFrame:CGRectMake(0, -meunViewHeight-titleViewHeight+[_PageTableView frameH],[_PageTableView frameW], meunViewHeight) With:self];
         _pagerMeunView = pageMenu;
+        
+        UIEdgeInsets ed= _PageTableView.contentInset;
+        ed.bottom = ed.bottom+meunViewHeight;
+        [_PageTableView setContentInset:ed];
+        
+        [_PageTableView addSubview:_pagerMeunView];
     }
     return _pagerMeunView;
 }
+
 
 #pragma mark - ObserveControll
 
@@ -120,18 +103,19 @@
     
     tabelView.delegate = self;
     self.PageTableView = tabelView;
+    _PageTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     self.titleView.hidden = NO;
-    
     self.headLabelOfTable.hidden = NO;
     self.tailLabelOfTable.hidden = YES;
+    self.pagerMeunView.hidden = NO;
     
-    self.pageHeigths = [NSMutableDictionary dictionary];
     _numberOfPage = 10;
     _numberOfPages = 0;
     _currentPage = 0;
     _isloading = NO;
     
+    [self updateDataFromSource];
 }
 
 -(void)removeListening:(UITableView *)tabelView{
@@ -141,99 +125,102 @@
 }
 
 
-
-
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSString *,id> *)change context:(void *)context{
     
    if ([keyPath isEqual:@"contentSize"]){
-        [self adjustTheTailY:[change[@"new"] CGSizeValue].height]; 
+        [self adjustTheTailY:[change[@"new"] CGSizeValue].height];
+       
     }else if ([keyPath isEqual:@"contentOffset"]){
+        
+        if ([change[@"new"] CGPointValue].y > (-meunViewHeight-titleViewHeight) ) {
+            
+            _pagerMeunView.frame = CGRectMake(0, [change[@"new"] CGPointValue].y+[_PageTableView frameH]-meunViewHeight,[_PageTableView frameW], meunViewHeight);
+        }else{
+            
+            _pagerMeunView.frame = CGRectMake(0, -meunViewHeight-titleViewHeight+[_PageTableView frameH],[_PageTableView frameW], meunViewHeight);
+        }
+        
+    }else if([keyPath isEqual:@"panGestureRecognizer.state"]){
+        NSInteger pp = [self isTriggleSwitchPage:_PageTableView];
+        if ( pp != 0 ) {
+             UIImageView *imageView = [self createMaskView];
+             void (^completeBlk)(BOOL) = ^(BOOL finish){
+             [imageView removeFromSuperview];
+             _PageTableView.scrollEnabled = YES;
+             };
+             [completeBlk copy];
+             
+             if (pp == 1) {
+             [_PageTableView.superview insertSubview:imageView aboveSubview:_PageTableView];
+             [self pageAnimation:imageView ByStainView:_PageTableView InType:NO withBlock:completeBlk];
+             }else{
+             [_PageTableView.superview insertSubview:imageView belowSubview:_PageTableView];
+             [self pageAnimation:_PageTableView ByStainView:imageView InType:YES withBlock:completeBlk];
+             }
+            
+              self.isloading = YES;
+              self.currentPage = _currentPage + pp;
+             }
     }
 }
 
 
 #pragma mark - pageSwitch 
 
--(void)setCurrentPage:(NSInteger)currentPage{
-    
-    if ( _isloading || currentPage == _currentPage || currentPage < 0 || currentPage >= _numberOfPages ) {
-        return;
-    }
-    
-    _isloading = YES;
-    
-    UIImageView *imageView = [self createMaskView];
-    
-    
-    if (currentPage > _currentPage) {
-        [_PageTableView.superview insertSubview:imageView aboveSubview:_PageTableView];
-    }else{
-        _PageTableView.transform = CGAffineTransformMakeTranslation(0, -imageView.frame.size.height);
-        [_PageTableView.superview insertSubview:imageView belowSubview:_PageTableView];
-    }
 
-        
-    _PageTableView.scrollEnabled = NO;
-    
-    _PageTableView.tag = currentPage;
-    [_PageTableView reloadData];
-    
-    if (currentPage > _currentPage) {
-         _currentPage = currentPage;
-        if ([_PageTableView.dataSource tableView:_PageTableView numberOfRowsInSection:0] != 0) {
-                 [self.PageTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] atScrollPosition:UITableViewScrollPositionTop animated:NO];
-            [self updateDataFromSource:NO];
-        }else{
-            [self updateDataFromSource:YES];
+-(void)removeAllCells:(UITableView *)tableView{
+    for (id cell in tableView.subviews[0].subviews) {
+        if ( [cell isKindOfClass:[UITableViewCell class]] ) {
+             [cell removeFromSuperview];
         }
-        
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            imageView.transform = CGAffineTransformMakeTranslation(0, -imageView.frame.size.height);
-        } completion:^(BOOL finished) {
-            [imageView removeFromSuperview];
-        }];
-        
-    }else{
-        
-         _currentPage = currentPage;
-        if ([_PageTableView.dataSource tableView:_PageTableView numberOfRowsInSection:0] != 0) {
-                [self.PageTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:[_PageTableView.dataSource tableView:_PageTableView numberOfRowsInSection:0]-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-               [self updateDataFromSource:NO];
-            
-        }else{
-            [self updateDataFromSource:YES];
-        }
-
-        [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
-            _PageTableView.transform = CGAffineTransformMakeTranslation(0, 0);
-        } completion:^(BOOL finished) {
-            [imageView removeFromSuperview];
-            _PageTableView.transform = CGAffineTransformMakeTranslation(0, 0);
-        }];
-        
     }
-        
-
+}
+-(void)pageAnimation:(UIView *)slideView ByStainView:(UIView *)stainView InType:(BOOL)type withBlock:(void (^)(BOOL finished))completeBlk{ //YES划入 NO划出
+    
+    slideView.transform = type ? CGAffineTransformMakeTranslation(0, -slideView.frame.size.height) : CGAffineTransformMakeTranslation(0,0) ;
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        slideView.transform = type ? CGAffineTransformMakeTranslation(0, 0) : CGAffineTransformMakeTranslation(0,-slideView.frame.size.height) ;
+    } completion:completeBlk];
+    
 }
 
--(void)updateDataFromSource:(bool)sourcing{
-    void (^callBack)(NSDictionary *) = ^(NSDictionary *msg){
-        if (msg != nil) {
+-(void)setCurrentPage:(NSInteger)currentPage{
+    
+    _currentPage = currentPage;
+    _PageTableView.tag = currentPage;
+    
+    if ([_PageTableView.dataSource tableView:_PageTableView numberOfRowsInSection:0] == 0) {
+          [_PageTableView reloadData];
+    }else{
+          [_PageTableView setContentOffset:CGPointZero animated:NO];
+    }
+    
+    [self updateDataFromSource];
+    
+}
+
+-(void)updateDataFromSource{
+    
+    void (^callBack)(Post *) = ^(Post *post){
+        if (post != nil) {
             
-            self.replyLabel.text = [msg objectForKey:@"reply"]!=nil ? [NSString stringWithFormat:@"%d",[[msg objectForKey:@"reply"] intValue]] : @"";
-            self.scanLabel.text = [msg objectForKey:@"scan"]!=nil ? [NSString stringWithFormat:@"%d",[[msg objectForKey:@"scan"] intValue]] : @"";
-            _numberOfPages = [[msg objectForKey:@"numberOfpages"] intValue];
+            NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:post.title,@"title",post.Uid,@"Uid",post.reply,@"reply",post.scan,@"scan",nil];
+            [self.titleView updateMsg:dic];
             
+            _numberOfPages = [post.numberOfPages intValue];
         }
-        
-        _isloading = NO;
-        _PageTableView.scrollEnabled = YES;
-        [self.pagerMeunView setCurrent:_currentPage+1 of:_numberOfPages];
-        self.headLabelOfTable.text = _currentPage != 0 ? [[NSString alloc] initWithFormat:@"上拉至第%ld页",(long)_currentPage] : @"首页";
-        self.tailLabelOfTable.text = _currentPage+1 != _numberOfPages? [[NSString alloc] initWithFormat:@"下拉至第%ld页",(long)_currentPage+2] : @"没有啦";
+         _isloading = NO;
     };
-    if (sourcing)  self.prepareData( _PageTableView , callBack);
-    else callBack(nil);
+    
+    self.prepareData([callBack copy]);
+    [self refreashStatus];
+    
+}
+
+-(void)refreashStatus{
+    [self.pagerMeunView setCurrent:_currentPage+1 of:_numberOfPages];
+    self.headLabelOfTable.text = _currentPage != 0 ? [[NSString alloc] initWithFormat:@"上拉至第%ld页",(long)_currentPage] : @"首页";
+    self.tailLabelOfTable.text = _currentPage+1 != _numberOfPages? [[NSString alloc] initWithFormat:@"下拉至第%ld页",(long)_currentPage+2] : @"没有啦";
 }
 
 -(void)adjustTheTailY:(CGFloat)h{
@@ -252,9 +239,7 @@
     maskView.image = [self convertViewToImage:_PageTableView.superview];
     return maskView;
 }
-
 -(UIImage*)convertViewToImage:(UIView *)v{
-    
     CGSize s = CGSizeMake(v.frame.size.width, v.frame.size.height);
     UIGraphicsBeginImageContextWithOptions(s, NO, [UIScreen mainScreen].scale);
     CGContextRef context = UIGraphicsGetCurrentContext();
@@ -264,53 +249,49 @@
     CGImageRef ref = CGImageCreateWithImageInRect(img.CGImage, CGRectMake([_PageTableView frameX]*[UIScreen mainScreen].scale, [_PageTableView frameY]*[UIScreen mainScreen].scale, [_PageTableView frameW]*[UIScreen mainScreen].scale, [_PageTableView frameH]*[UIScreen mainScreen].scale));
     UIImage *image = [UIImage imageWithCGImage:ref];
     CGImageRelease(ref);
-    
     return image;
 }
 
+
 #pragma mark - UIscrollViewDelegate
 
-
 -(CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-     return 300;
+     return 500;
 }
 
-
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+-(void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset{
     
-    NSInteger p = [self validNewPage:scrollView];
-    if (p != -1 ) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [scrollView setContentOffset:scrollView.contentOffset animated:NO];
-            [scrollView setNeedsLayout];
-            [scrollView layoutIfNeeded];
-            [self setCurrentPage:p];
-        });
+    if ( self.isloading ) {
+          targetContentOffset->y = scrollView.contentOffset.y;
     }
-   
+
 }
--(NSInteger)validNewPage:(UIScrollView *)scrollView{
+-(NSInteger)isTriggleSwitchPage:(UIScrollView *)scrollView{
     
-    if ( [self.PageTableView contentY] < - (topLimit + self.PageTableView.contentInset.top) ) {
+    if ( _isloading) {
+        return 0 ;
+    }
+    
+    if ( [scrollView contentY] < - (topLimit + scrollView.contentInset.top) ) {
+        return _currentPage <= 0 ? 0 : -1;
         
-        return _currentPage <= 0 ? -1 : _currentPage-1;
-        
-    }else if( [self.PageTableView contentY] > [self.PageTableView contentH] - [self.PageTableView frameH] + buttomLimit
+    }else if( [scrollView contentY] > [scrollView contentH] - [scrollView frameH] + buttomLimit
     ){
+        return _currentPage+1 >= _numberOfPages? 0 : 1;
         
-        return _currentPage+1 >= _numberOfPages? -1 : _currentPage+1;
     }
-    return -1;
+    return 0;
 }
+
 
 
 #pragma mark - PageViewDelegate
 
 -(void)doEdit{
-    self.cblock(@"1");
+    self.rblock(_titleView.uId);
 }
 -(void)doReply{
-    self.rblock(@"1");
+    self.rblock(_titleView.uId);
 }
 -(void)nextPage{
     self.currentPage = _currentPage+1;

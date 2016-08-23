@@ -19,5 +19,5 @@
 
 -(void)startListening:(UITableView *)tabelView;
 -(JQPagerMeunView *)pagerMeunView;
--(void)updateDataFromSource:(BOOL)sourcing;
+-(void)updateDataFromSource;
 @end
